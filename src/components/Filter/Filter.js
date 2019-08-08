@@ -21,12 +21,15 @@ const Filter = () => {
   };
 
   return (
-    <nav style={{ background: theme.ui, color: theme.color }}>
+    <nav
+      style={{ background: theme.ui, color: theme.color }}
+      className="filter-nav"
+    >
       <button
         type="button"
         value={All}
         onClick={handleClick}
-        className="nav-btn"
+        className="filter-nav-btn"
       >
         All
       </button>
@@ -34,23 +37,23 @@ const Filter = () => {
         type="button"
         value={Active}
         onClick={handleClick}
-        className="nav-btn"
+        className="filter-nav-btn"
       >
-        Active
+        Business
       </button>
       <button
         type="button"
         value={Paused}
         onClick={handleClick}
-        className="nav-btn"
+        className="filter-nav-btn"
       >
-        Paused
+        Vacation
       </button>
       <button
         type="button"
         value={Completed}
         onClick={handleClick}
-        className="nav-btn"
+        className="filter-nav-btn"
       >
         Completed
       </button>

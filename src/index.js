@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App/App';
 import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSearch,
+  faMoon,
+  faSun,
+  faBars,
+  faUser,
+  faKey
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faMoon, faSun, faSearch);
+library.add(faMoon, faSun, faSearch, faBars, faUser, faKey);
 
 ReactDOM.render(
   <BrowserRouter>

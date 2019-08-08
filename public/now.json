@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "trip-planner",
+  "alias": "trip-planner-react",
   "routes": [
     {
       "src": "^/static/(.*)",

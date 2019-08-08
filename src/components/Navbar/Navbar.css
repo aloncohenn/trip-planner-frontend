@@ -1,6 +1,6 @@
 .navbar {
   font-size: 18px;
-  background-color: #344e5c;
+  background-color: #2376ae;
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 10px;
 }
@@ -59,7 +59,6 @@
     margin: 0;
   }
   .nav-links {
-    text-decoration: none;
     margin-left: 40px;
   }
   .logo {
@@ -70,6 +69,6 @@
   }
   .logo:hover,
   .nav-links:hover {
-    color: #efc958;
+    color: rgba(255, 255, 255, 1);
   }
 }

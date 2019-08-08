@@ -1,16 +1,22 @@
 # Trip Planner App
 
-### Live:
+### Live: https://trip-planner.cohencodes.now.sh/
 
 ### Screenshots
 
-#### Technologies
+#### FrontEnd Stack
 
 - React
 - Built with React Hooks & Context API
 - Vanilla CSS
 - FontAwesome Library
 
-Deployed to Zeit
+#### Backend Stack
+
+- Node.js
+- Express
+- PostgreSQL
+
+Deployed to Zeit and Heroku
 
 Built by [@cohencodes](https://github.com/cohencodes)

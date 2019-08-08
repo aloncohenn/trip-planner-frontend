@@ -18,7 +18,9 @@ const Navbar = () => {
         >
           <FontAwesomeIcon icon="bars" color="white" size="lg" />
         </span>
-        <Link to="/">Logo</Link>
+        <Link to="/" className="logo">
+          TripPlanner
+        </Link>
         <ul className="main-nav" id={active ? 'active' : null}>
           <li>
             <Link to="/signup" className="nav-links">
@@ -45,7 +47,9 @@ const Navbar = () => {
         >
           <FontAwesomeIcon icon="bars" color="white" size="lg" />
         </span>
-        <Link to="/">Logo</Link>
+        <Link to="/" className="logo">
+          TripPlanner
+        </Link>
         <ul className="main-nav" id={active ? 'active' : null}>
           <li>
             <Link to="/signup" className="nav-links">
