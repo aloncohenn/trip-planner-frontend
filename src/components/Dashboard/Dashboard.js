@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { TripContext } from '../../contexts/TripContext';
-import TripDetail from '../TripDetail/TripDetail';
+// import TripDetail from '../TripDetail/TripDetail';
 import Filter from '../Filter/Filter';
 import TripList from '../TripList/TripList';
 import './Dashboard.css';

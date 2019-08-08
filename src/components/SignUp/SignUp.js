@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Emoji from '../Emoji/Emoji';
 import './SignUp.css';
 
-const SignUp = () => {
+const SignUp = props => {
   const [error, setError] = useState('');
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const theme = isLightTheme ? light : dark;
@@ -16,13 +16,13 @@ const SignUp = () => {
   );
 
   function signupUser() {
-    console.log(values);
     AuthApiService.postUser({ ...values }).then(res => {
-      if (res.error) {
-        setError(res.error);
+      if (res.data.error) {
+        setError(res.data.error);
         return;
+      } else {
+        props.history.replace('/login');
       }
-      console.log(res);
     });
   }
 

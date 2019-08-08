@@ -3,14 +3,15 @@ import config from '../config';
 
 const AuthApiService = {
   postUser({ username, password }) {
+    console.log(username);
     return axios({
       method: 'post',
-      url: `${config.API_ENDPOINT}/users/signup`,
+      url: `${config.API_ENDPOINT}/users`,
       headers: {
         'content-type': 'application/json'
       },
       data: {
-        username,
+        user_name: username,
         password
       }
     })
@@ -18,27 +19,28 @@ const AuthApiService = {
         return res;
       })
       .catch(error => {
-        return error.response.data;
+        return error.response;
       });
   },
 
   postLogin({ username, password }) {
     return axios({
       method: 'post',
-      url: `${config.API_ENDPOINT}/auth`,
+      url: `${config.API_ENDPOINT}/auth/login`,
       headers: {
         'content-type': 'application/json'
       },
       data: {
-        username,
+        user_name: username,
         password
       }
     })
       .then(res => {
+        console.log(res);
         return res;
       })
       .catch(error => {
-        return error.response.data;
+        return error.response;
       });
   }
 };

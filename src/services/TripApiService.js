@@ -47,7 +47,7 @@ const TripApiService = {
   deleteJob(id) {
     return axios({
       method: 'delete',
-      url: `${config.API_ENDPOINT}/jobs/${id}`,
+      url: `${config.API_ENDPOINT}/trips/${id}`,
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
@@ -64,7 +64,7 @@ const TripApiService = {
   editJob({ edits }) {
     return axios({
       method: 'patch',
-      url: `${config.API_ENDPOINT}/jobs/${edits.id}`,
+      url: `${config.API_ENDPOINT}/trips/${edits.id}`,
       headers: {
         'content-type': 'application/json',
         authorization: `${TokenService.getAuthToken()}`
