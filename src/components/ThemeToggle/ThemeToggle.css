@@ -1,0 +1,23 @@
+.theme-toggle {
+  display: flex;
+  justify-content: center;
+
+  margin: 20px;
+}
+
+.theme-btn {
+  padding: 8px 15px;
+  font-size: 0.8rem;
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  border: 0px;
+  border-radius: 15px;
+}
+
+.dark {
+  background-color: #333;
+}
+
+.theme-btn:hover {
+  box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.2);
+}
