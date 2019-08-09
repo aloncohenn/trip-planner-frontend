@@ -2,13 +2,12 @@ import React, { useState, useContext } from 'react';
 import { TripContext } from '../../contexts/TripContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Emoji from '../Emoji/Emoji';
-
 import './TripForm.css';
 
 const TripForm = props => {
   const [error, setError] = useState(null);
   const [tripAdded, setTripAdded] = useState(false);
-  const { addTrip } = useContext(TripContext);
+  const { addTrip, getNow } = useContext(TripContext);
 
   const handleSubmitTrip = e => {
     e.preventDefault();
@@ -71,19 +70,21 @@ const TripForm = props => {
         <div>
           <label htmlFor="start_date">Start Date</label>
           <input
-            type="text"
+            type="date"
             name="start_date"
             id="start_date"
-            placeholder="yyyy-mm-dd"
+            min={getNow()}
+            default={getNow()}
           />
         </div>
         <div>
           <label htmlFor="end_date">End Date</label>
           <input
-            type="text"
+            type="date"
             name="end_date"
             id="end_date"
-            placeholder="yyyy-mm-dd"
+            min={getNow()}
+            default={getNow()}
           />
         </div>
         <div>

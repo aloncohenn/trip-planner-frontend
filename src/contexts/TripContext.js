@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import TripApiService from '../services/TripApiService';
 import TokenService from '../services/TokenService';
+import moment from 'moment';
 
 export const TripContext = createContext();
 
@@ -13,6 +14,10 @@ const TripContextProvider = props => {
       TripApiService.getTrips().then(trips => setTrips(trips));
     }
   }, []);
+
+  const getNow = () => {
+    return moment().format('YYYY-MM-DD');
+  };
 
   // const filterTrips = value => {
   //   let filteredTrips = trips.filter(trip => {
@@ -47,7 +52,7 @@ const TripContextProvider = props => {
   };
 
   return (
-    <TripContext.Provider value={{ trips, addTrip, deleteTrip }}>
+    <TripContext.Provider value={{ trips, addTrip, deleteTrip, getNow }}>
       {props.children}
     </TripContext.Provider>
   );
