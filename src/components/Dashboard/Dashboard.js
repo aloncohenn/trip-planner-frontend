@@ -12,6 +12,7 @@ const Dashboard = () => {
       <TripDetail
         item={trip}
         key={trip.id}
+        trip_id={trip.id}
         title={trip.title}
         destination={trip.destination}
         category={trip.category}

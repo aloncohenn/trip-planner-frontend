@@ -3,7 +3,6 @@ import config from '../config';
 
 const AuthApiService = {
   postUser({ username, password }) {
-    console.log(username);
     return axios({
       method: 'post',
       url: `${config.API_ENDPOINT}/users`,

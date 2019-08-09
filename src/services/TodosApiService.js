@@ -3,40 +3,38 @@ import config from '../config';
 import TokenService from './TokenService';
 import jwtDecode from 'jwt-decode';
 
-const TripApiService = {
-  getTrips() {
-    const authToken = TokenService.getAuthToken();
-    const decoded = jwtDecode(authToken);
+const TodoApiService = {
+  getTodos(trip_id) {
     return axios({
       method: 'get',
-      url: `${config.API_ENDPOINT}/trips/get_trips/${decoded.user_id}`,
+      url: `${config.API_ENDPOINT}/todos/get_todos/${trip_id}`,
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
     })
       .then(res => {
-        return res.data;
+        console.log(res);
+        return res;
       })
       .catch(error => {
+        console.log(error);
         return error.response.data;
       });
   },
 
-  postTrip(tripData) {
+  postTodo(todoData) {
     const authToken = TokenService.getAuthToken();
     const decoded = jwtDecode(authToken);
-    // add the user id to the request
-    tripData.user_id = decoded.user_id;
-    console.log(tripData);
+    todoData.user_name = decoded.user_name;
     return axios({
       method: 'post',
-      url: `${config.API_ENDPOINT}/trips/new_trip`,
+      url: `${config.API_ENDPOINT}/todos/new_todo`,
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
       },
-      data: tripData
+      data: todoData
     })
       .then(res => {
         return res;
@@ -46,13 +44,16 @@ const TripApiService = {
       });
   },
 
-  deleteTrip(id) {
+  deleteTodo(todo_id) {
     return axios({
       method: 'delete',
-      url: `${config.API_ENDPOINT}/trips/${id}`,
+      url: `${config.API_ENDPOINT}/todos/delete_todo`,
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
+      },
+      data: {
+        todo_id
       }
     })
       .then(res => {
@@ -63,10 +64,10 @@ const TripApiService = {
       });
   },
 
-  editTrip({ edits }) {
+  editTodo({ edits }) {
     return axios({
       method: 'patch',
-      url: `${config.API_ENDPOINT}/trips/${edits.id}`,
+      url: `${config.API_ENDPOINT}/todos/${edits.id}`,
       headers: {
         'content-type': 'application/json',
         authorization: `${TokenService.getAuthToken()}`
@@ -84,4 +85,4 @@ const TripApiService = {
   }
 };
 
-export default TripApiService;
+export default TodoApiService;

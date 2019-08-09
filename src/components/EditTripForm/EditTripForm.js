@@ -1,14 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { TripContext } from '../../contexts/TripContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TodosList from '../TodosList/TodosList';
+import moment from 'moment';
 import Emoji from '../Emoji/Emoji';
-
 import './EditTripForm.css';
 
 const EditTripForm = props => {
   const [error, setError] = useState(null);
   const [tripAdded, setTripAdded] = useState(false);
   const { trips, addTrip } = useContext(TripContext);
+
+  const tripData = trips.find(trip => trip.id === props.trip_id);
 
   const handleSubmitTrip = e => {
     e.preventDefault();
@@ -46,7 +49,7 @@ const EditTripForm = props => {
             type="text"
             name="title"
             id="title"
-            placeholder="First family vacation"
+            defaultValue={tripData.title}
           />
         </div>
         <div>
@@ -55,25 +58,25 @@ const EditTripForm = props => {
             type="text"
             name="destination"
             id="destination"
-            placeholder="Hawaii..."
+            defaultValue={tripData.destination}
           />
         </div>
         <div>
           <label htmlFor="start_date">Start Date</label>
           <input
-            type="text"
+            type="date"
             name="start_date"
             id="start_date"
-            placeholder="yyyy-mm-dd"
+            defaultValue={moment(tripData.start_date).format('YYYY-MM-DD')}
           />
         </div>
         <div>
           <label htmlFor="end_date">End Date</label>
           <input
-            type="text"
+            type="date"
             name="end_date"
             id="end_date"
-            placeholder="yyyy-mm-dd"
+            defaultValue={moment(tripData.end_date).format('YYYY-MM-DD')}
           />
         </div>
         <div>
@@ -85,14 +88,7 @@ const EditTripForm = props => {
           </select>
         </div>
         <div>
-          <label htmlFor="todos">Todos</label>
-          <input
-            type="textarea"
-            name="todos"
-            id="todos"
-            placeholder="todos"
-            size="40"
-          />
+          <TodosList trip_id={tripData.id} />
         </div>
         <button type="submit">Submit</button>
         <p className="checkmark">

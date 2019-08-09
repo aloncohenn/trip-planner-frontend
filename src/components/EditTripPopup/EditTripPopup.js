@@ -11,7 +11,7 @@ const EditTripPopup = props => {
         <button onClick={props.closePopup} className="close-popup">
           <FontAwesomeIcon icon="window-close" color="#2376ae" size="3x" />
         </button>
-        <EditTripForm />
+        <EditTripForm {...props} />
       </div>
     </div>
   );

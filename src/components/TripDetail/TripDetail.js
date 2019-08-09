@@ -5,7 +5,7 @@ import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './TripDetail.css';
 
-const TripDetail = ({ title, destination, start_date, end_date }) => {
+const TripDetail = ({ title, destination, start_date, end_date, trip_id }) => {
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const theme = isLightTheme ? light : dark;
   const [showPopup, setShowPopup] = useState(false);
@@ -19,8 +19,8 @@ const TripDetail = ({ title, destination, start_date, end_date }) => {
   const endDate = end_date.split('T');
 
   const getDuration = (startDate, endDate) => {
-    const start = moment(startDate[0]); //todays date
-    const end = moment(endDate[0]); // another date
+    const start = moment(startDate[0]);
+    const end = moment(endDate[0]);
     const duration = moment.duration(end.diff(start));
     const days = duration.asDays();
     return days;
@@ -49,7 +49,9 @@ const TripDetail = ({ title, destination, start_date, end_date }) => {
       <button className="edit-btn" onClick={togglePopup}>
         <FontAwesomeIcon icon="trash-alt" color="#2376ae" size="2x" />
       </button>
-      {showPopup && <EditTripPopup closePopup={togglePopup} />}
+      {showPopup && (
+        <EditTripPopup closePopup={togglePopup} trip_id={trip_id} />
+      )}
     </li>
   );
 };

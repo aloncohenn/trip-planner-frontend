@@ -11,7 +11,9 @@ const TripContextProvider = props => {
 
   useEffect(() => {
     if (TokenService.hasAuthToken()) {
-      TripApiService.getTrips().then(trips => setTrips(trips));
+      TripApiService.getTrips().then(trips => {
+        setTrips(trips);
+      });
     }
   }, []);
 
