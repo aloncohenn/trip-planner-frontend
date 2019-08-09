@@ -1,12 +1,15 @@
 import axios from 'axios';
 import config from '../config';
 import TokenService from './TokenService';
+import jwtDecode from 'jwt-decode';
 
 const TripApiService = {
   getTrips() {
+    const authToken = TokenService.getAuthToken();
+    const decoded = jwtDecode(authToken);
     return axios({
       method: 'get',
-      url: `${config.API_ENDPOINT}/trips`,
+      url: `${config.API_ENDPOINT}/trips/get_trips/${decoded.user_id}`,
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
@@ -20,7 +23,12 @@ const TripApiService = {
       });
   },
 
-  postTrip({ user_id, title, destination, start_date, end_date }) {
+  postTrip(tripData) {
+    const authToken = TokenService.getAuthToken();
+    const decoded = jwtDecode(authToken);
+    // add the user id to the request
+    tripData.user_id = decoded.user_id;
+    console.log(tripData);
     return axios({
       method: 'post',
       url: `${config.API_ENDPOINT}/trips/new_trip`,
@@ -28,13 +36,7 @@ const TripApiService = {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
       },
-      data: {
-        user_id,
-        title,
-        destination,
-        start_date,
-        end_date
-      }
+      data: tripData
     })
       .then(res => {
         return res;

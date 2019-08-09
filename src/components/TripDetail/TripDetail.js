@@ -1,38 +1,47 @@
-import React, { useContext } from 'react';
-import { TripContext } from '../../contexts/TripContext';
+import React, { useContext, useState } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import EditTripPopup from '../EditTripPopup/EditTripPopup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './TripDetail.css';
 
-const ItemDetails = ({ item }) => {
-  const { dispatch } = useContext(TripContext);
+const TripDetail = ({ title, destination, start_date, end_date }) => {
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const theme = isLightTheme ? light : dark;
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
+  // trim the dates for presentation
+  const startDate = start_date.split('T');
+  const endDate = end_date.split('T');
+
   return (
     <li
       style={{ backgroundColor: theme.cardbg }}
       className={!isLightTheme ? 'dark-mode-item item' : 'item'}
     >
       <div className="item-info">
-        <h3 className="name">{item.name}</h3>
+        <h3 className="title">{title}</h3>
         <div className="bar" />
       </div>
       <div className="left-col">
-        <img src={item.imgURL} alt={item.name} className="item-image" />
+        <p>Start: {startDate[0]}</p>
+        <p>End: {endDate[0]}</p>
       </div>
       <div className="right-col">
-        <p className="total">{item.total}</p>
-        <button
-          onClick={() => dispatch({ type: 'TOGGLE_STATUS', name: item.name })}
-          className={
-            item.status === 'Active' ? 'active status-btn' : 'paused status-btn'
-          }
-        >
-          {/* set button text depending on status */}
-          {item.status === 'Active' ? 'Active' : 'Paused'}
-        </button>
+        <p className="destination">{destination}</p>
       </div>
+      <button className="edit-btn" onClick={togglePopup}>
+        <FontAwesomeIcon icon="edit" color="#2376ae" size="2x" />
+      </button>
+      <button className="edit-btn" onClick={togglePopup}>
+        <FontAwesomeIcon icon="trash-alt" color="#2376ae" size="2x" />
+      </button>
+      {showPopup && <EditTripPopup closePopup={togglePopup} />}
     </li>
   );
 };
 
-export default ItemDetails;
+export default TripDetail;

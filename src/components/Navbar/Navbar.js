@@ -52,13 +52,8 @@ const Navbar = () => {
         </Link>
         <ul className="main-nav" id={active ? 'active' : null}>
           <li>
-            <Link to="/signup" className="nav-links">
+            <Link to="/dashboard" className="nav-links">
               Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link to="/newtrip" className="nav-links">
-              New Trip
             </Link>
           </li>
           <li>

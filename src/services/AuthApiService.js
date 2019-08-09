@@ -36,7 +36,6 @@ const AuthApiService = {
       }
     })
       .then(res => {
-        console.log(res);
         return res;
       })
       .catch(error => {

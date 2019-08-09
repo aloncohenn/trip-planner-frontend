@@ -1,0 +1,32 @@
+.trip-form {
+  width: 50%;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: #2376ae 0 0 10px;
+  text-align: center;
+}
+
+.trip-form input {
+  margin: 8px;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.trip-form button {
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #2376ae;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+}
+
+.trip-form button:hover {
+  background-color: rgb(15, 190, 216);
+}
+
+.checkmark {
+  margin: 10px auto;
+}

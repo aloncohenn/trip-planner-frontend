@@ -2,22 +2,28 @@ import React, { useContext, useState } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { TripContext } from '../../contexts/TripContext';
 import SearchBox from '../SearchBox/SearchBox';
+import AddTripPopup from '../AddTripPopup/AddTripPopup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Filter.css';
 
-const Filter = () => {
+const Filter = props => {
   const { navFilter } = useContext(TripContext);
+  const [showPopup, setShowPopup] = useState(false);
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const theme = isLightTheme ? light : dark;
 
-  const [All] = useState('All');
-  const [Active] = useState('Active');
-  const [Paused] = useState('Paused');
-  const [Completed] = useState('Completed');
+  const [None] = useState('None');
+  const [Business] = useState('Business');
+  const [Vacation] = useState('Vacation');
 
   const handleClick = e => {
     const { value } = e.target;
 
     navFilter(value);
+  };
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
   };
 
   return (
@@ -27,15 +33,15 @@ const Filter = () => {
     >
       <button
         type="button"
-        value={All}
+        value={None}
         onClick={handleClick}
         className="filter-nav-btn"
       >
-        All
+        None
       </button>
       <button
         type="button"
-        value={Active}
+        value={Business}
         onClick={handleClick}
         className="filter-nav-btn"
       >
@@ -43,20 +49,16 @@ const Filter = () => {
       </button>
       <button
         type="button"
-        value={Paused}
+        value={Vacation}
         onClick={handleClick}
         className="filter-nav-btn"
       >
         Vacation
       </button>
-      <button
-        type="button"
-        value={Completed}
-        onClick={handleClick}
-        className="filter-nav-btn"
-      >
-        Completed
+      <button className="add-btn" onClick={togglePopup}>
+        <FontAwesomeIcon icon="plus" color="#2376ae" size="3x" />
       </button>
+      {showPopup && <AddTripPopup closePopup={togglePopup} />}
       <SearchBox />
     </nav>
   );

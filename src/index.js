@@ -12,10 +12,27 @@ import {
   faSun,
   faBars,
   faUser,
-  faKey
+  faKey,
+  faPlus,
+  faWindowClose,
+  faCheckCircle,
+  faEdit,
+  faTrashAlt
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faMoon, faSun, faSearch, faBars, faUser, faKey);
+library.add(
+  faMoon,
+  faSun,
+  faSearch,
+  faBars,
+  faUser,
+  faKey,
+  faPlus,
+  faWindowClose,
+  faCheckCircle,
+  faEdit,
+  faTrashAlt
+);
 
 ReactDOM.render(
   <BrowserRouter>

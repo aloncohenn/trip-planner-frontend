@@ -1,35 +1,53 @@
-import React, { createContext, useReducer, useState } from 'react';
-import { TripReducer } from '../reducers/TripReducer';
+import React, { createContext, useState, useEffect } from 'react';
+import TripApiService from '../services/TripApiService';
+import TokenService from '../services/TokenService';
 
 export const TripContext = createContext();
 
-const initialData = ['trip one', 'trip two', 'trip three'];
-
 const TripContextProvider = props => {
-  const [items, dispatch] = useReducer(TripReducer, initialData);
-  const [filteredItems, setFilteredItems] = useState(items);
+  const [trips, setTrips] = useState([]);
+  // const [filteredTrips, setFilteredTrips] = useState(trips);
 
-  const filterItems = value => {
-    let filteredItems = items.filter(item => {
-      return item.name.toLowerCase().startsWith(value.toLowerCase());
+  useEffect(() => {
+    if (TokenService.hasAuthToken()) {
+      TripApiService.getTrips().then(trips => setTrips(trips));
+    }
+  }, []);
+
+  // const filterTrips = value => {
+  //   let filteredTrips = trips.filter(trip => {
+  //     return trip.title.toLowerCase().startsWith(value.toLowerCase());
+  //   });
+  //   setFilteredTrips(filteredTrips);
+  // };
+
+  // const navFilter = value => {
+  //   if (value === 'None') {
+  //     return setFilteredTrips(trips);
+  //   }
+  //   let filteredTrips = trips.filter(trip => {
+  //     return trip.category.startsWith(value);
+  //   });
+  //   setFilteredTrips(filteredTrips);
+  // };
+
+  const addTrip = tripData => {
+    TripApiService.postTrip(tripData).then(res => {
+      if (res.error) {
+        return res.error;
+      } else {
+        TripApiService.getTrips().then(trips => setTrips(trips));
+      }
     });
-    setFilteredItems(filteredItems);
   };
 
-  const navFilter = value => {
-    if (value === 'All') {
-      return setFilteredItems(items);
-    }
-    let filteredItems = items.filter(item => {
-      return item.status.startsWith(value);
-    });
-    setFilteredItems(filteredItems);
+  const deleteTrip = id => {
+    TripApiService.deleteTrip(id);
+    TripApiService.getTrips().then(trips => setTrips(trips));
   };
 
   return (
-    <TripContext.Provider
-      value={{ filteredItems, dispatch, filterItems, navFilter }}
-    >
+    <TripContext.Provider value={{ trips, addTrip, deleteTrip }}>
       {props.children}
     </TripContext.Provider>
   );

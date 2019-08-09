@@ -28,6 +28,18 @@
   background-color: rgb(15, 190, 216);
 }
 
+.add-btn {
+  border: none;
+  margin-left: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
 @media only screen and (max-width: 600px) {
   .filter-nav {
     width: 100%;

@@ -59,7 +59,7 @@
   margin: 15px auto;
   height: 5px;
   border-radius: 3px;
-  background-color: rgb(42, 245, 152);
+  background-color: #2376ae;
 }
 
 .item-info {
@@ -72,4 +72,16 @@
 
 .right-col {
   width: 50%;
+}
+
+.edit-btn {
+  border: none;
+  margin: 0 auto;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }

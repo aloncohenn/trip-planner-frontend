@@ -3,11 +3,14 @@ import AuthApiService from '../../services/AuthApiService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Emoji from '../Emoji/Emoji';
 import { UserContext } from '../../contexts/UserContext';
+import { ThemeContext } from '../../contexts/ThemeContext';
 import './Login.css';
 
 const Login = props => {
   const { handleLogIn } = useContext(UserContext);
   const [error, setError] = useState(null);
+  const { isLightTheme, light, dark } = useContext(ThemeContext);
+  const theme = isLightTheme ? light : dark;
 
   const redirect = () => {
     props.history.replace('/dashboard');
@@ -26,7 +29,7 @@ const Login = props => {
       } else {
         username.value = '';
         password.value = '';
-        const jwt = res.data.authToken.split('bearer ')[1];
+        const jwt = res.data.authToken;
         handleLogIn(jwt, redirect);
       }
     });
@@ -40,7 +43,7 @@ const Login = props => {
       if (res.data.error) {
         setError(res.data.error);
       } else {
-        const jwt = res.data.authToken.split('bearer ')[1];
+        const jwt = res.data.authToken;
         handleLogIn(jwt, redirect);
       }
     });
@@ -48,7 +51,7 @@ const Login = props => {
 
   return (
     <section className="login-form">
-      <h1>Log In</h1>
+      <h1 style={{ color: theme.color }}>Log In</h1>
       <form onSubmit={handleSubmitJwtAuth}>
         <div role="alert">
           {error && (
@@ -58,7 +61,7 @@ const Login = props => {
           )}
         </div>{' '}
         <div>
-          <label htmlFor="username">
+          <label htmlFor="username" style={{ color: theme.color }}>
             <FontAwesomeIcon icon="user" color="#2376ae" size="sm" /> Username{' '}
           </label>{' '}
           <input
@@ -69,7 +72,7 @@ const Login = props => {
           />
         </div>
         <div>
-          <label htmlFor="password">
+          <label htmlFor="password" style={{ color: theme.color }}>
             <FontAwesomeIcon icon="key" color="#2376ae" size="sm" /> Password{' '}
           </label>
           <input
