@@ -18,5 +18,9 @@
   top: 25%;
   bottom: 25%;
   margin: auto;
-  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  background: rgb(250, 250, 250);
+  min-height: 650px;
+  max-width: 600px;
 }

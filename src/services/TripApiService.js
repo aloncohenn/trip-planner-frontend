@@ -46,13 +46,16 @@ const TripApiService = {
       });
   },
 
-  deleteTrip(id) {
+  deleteTrip(trip_id) {
     return axios({
       method: 'delete',
-      url: `${config.API_ENDPOINT}/trips/${id}`,
+      url: `${config.API_ENDPOINT}/trips/delete_trip`,
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
+      },
+      data: {
+        trip_id
       }
     })
       .then(res => {

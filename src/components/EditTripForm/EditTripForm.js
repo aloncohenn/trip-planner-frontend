@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { TripContext } from '../../contexts/TripContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import TodosList from '../TodosList/TodosList';
+import TodoList from '../TodoList/TodoList';
 import moment from 'moment';
 import Emoji from '../Emoji/Emoji';
 import './EditTripForm.css';
@@ -9,7 +9,7 @@ import './EditTripForm.css';
 const EditTripForm = props => {
   const [error, setError] = useState(null);
   const [tripAdded, setTripAdded] = useState(false);
-  const { trips, addTrip } = useContext(TripContext);
+  const { trips, addTrip, deleteTrip } = useContext(TripContext);
 
   const tripData = trips.find(trip => trip.id === props.trip_id);
 
@@ -50,6 +50,7 @@ const EditTripForm = props => {
             name="title"
             id="title"
             defaultValue={tripData.title}
+            className="input-val"
           />
         </div>
         <div>
@@ -59,6 +60,7 @@ const EditTripForm = props => {
             name="destination"
             id="destination"
             defaultValue={tripData.destination}
+            className="input-val"
           />
         </div>
         <div>
@@ -68,6 +70,7 @@ const EditTripForm = props => {
             name="start_date"
             id="start_date"
             defaultValue={moment(tripData.start_date).format('YYYY-MM-DD')}
+            className="input-val"
           />
         </div>
         <div>
@@ -77,26 +80,33 @@ const EditTripForm = props => {
             name="end_date"
             id="end_date"
             defaultValue={moment(tripData.end_date).format('YYYY-MM-DD')}
+            className="input-val"
           />
         </div>
         <div>
           <label htmlFor="category">Category</label>
-          <select>
+          <select className="select-css">
             <option value="none">None</option>
             <option value="business">Business</option>
             <option value="vacation">Vacation</option>
           </select>
         </div>
-        <div>
-          <TodosList trip_id={tripData.id} />
-        </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Save</button>
+        <input
+          className="delete-btn"
+          type="button"
+          value="Delete"
+          onClick={() => deleteTrip(tripData.id)}
+        />
         <p className="checkmark">
           {tripAdded && (
             <FontAwesomeIcon icon="check-circle" color="#2376ae" size="3x" />
           )}
         </p>
       </form>
+      <div>
+        <TodoList trip_id={tripData.id} />
+      </div>
     </section>
   );
 };

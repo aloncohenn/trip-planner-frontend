@@ -36,18 +36,25 @@ const TripDetail = ({ title, destination, start_date, end_date, trip_id }) => {
         <div className="bar" />
       </div>
       <div className="left-col">
-        <p>Start: {startDate[0]}</p>
-        <p>End: {endDate[0]}</p>
-        <p>Duration: {getDuration(startDate, endDate)} days</p>
+        <p>
+          <strong>Start: </strong>
+          {startDate[0]}
+        </p>
+        <p>
+          <strong>End: </strong>
+          {endDate[0]}
+        </p>
+        <p>
+          <strong>Duration: </strong> {getDuration(startDate, endDate)} days
+        </p>
       </div>
       <div className="right-col">
-        <p className="destination">{destination}</p>
+        <p className="destination">
+          <strong>{destination}</strong>
+        </p>
       </div>
       <button className="edit-btn" onClick={togglePopup}>
         <FontAwesomeIcon icon="edit" color="#2376ae" size="2x" />
-      </button>
-      <button className="edit-btn" onClick={togglePopup}>
-        <FontAwesomeIcon icon="trash-alt" color="#2376ae" size="2x" />
       </button>
       {showPopup && (
         <EditTripPopup closePopup={togglePopup} trip_id={trip_id} />

@@ -14,11 +14,9 @@ const TodoApiService = {
       }
     })
       .then(res => {
-        console.log(res);
-        return res;
+        return res.data;
       })
       .catch(error => {
-        console.log(error);
         return error.response.data;
       });
   },
@@ -26,7 +24,7 @@ const TodoApiService = {
   postTodo(todoData) {
     const authToken = TokenService.getAuthToken();
     const decoded = jwtDecode(authToken);
-    todoData.user_name = decoded.user_name;
+    todoData.user_name = decoded.sub;
     return axios({
       method: 'post',
       url: `${config.API_ENDPOINT}/todos/new_todo`,
@@ -64,16 +62,18 @@ const TodoApiService = {
       });
   },
 
-  editTodo({ edits }) {
+  updateTodo(data) {
     return axios({
-      method: 'patch',
-      url: `${config.API_ENDPOINT}/todos/${edits.id}`,
+      method: 'put',
+      url: `${config.API_ENDPOINT}/todos/update_todo`,
       headers: {
         'content-type': 'application/json',
         authorization: `${TokenService.getAuthToken()}`
       },
       data: {
-        _id: edits.id
+        id: data.id,
+        title: data.title,
+        done_status: data.done_status
       }
     })
       .then(res => {
