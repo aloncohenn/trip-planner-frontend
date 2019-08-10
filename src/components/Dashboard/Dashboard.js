@@ -26,12 +26,11 @@ const Dashboard = () => {
   });
 
   return (
-    <div
-      className="dashboard"
-      style={{ color: theme.color, background: theme.ui }}
-    >
+    <div className="dashboard" style={{ background: theme.ui }}>
       <Filter />
-      <ul className="trip-list">{tripList}</ul>
+      <ul className="trip-list" style={{ color: theme.color }}>
+        {tripList}
+      </ul>
     </div>
   );
 };

@@ -65,17 +65,19 @@ const TripApiService = {
       });
   },
 
-  editTrip({ edits }) {
+  updateTrip(tripData) {
+    const authToken = TokenService.getAuthToken();
+    const decoded = jwtDecode(authToken);
+    // add the user id to the request
+    tripData.user_id = decoded.user_id;
     return axios({
-      method: 'patch',
-      url: `${config.API_ENDPOINT}/trips/${edits.id}`,
+      method: 'put',
+      url: `${config.API_ENDPOINT}/trips/update_trip`,
       headers: {
         'content-type': 'application/json',
-        authorization: `${TokenService.getAuthToken()}`
+        authorization: `bearer ${TokenService.getAuthToken()}`
       },
-      data: {
-        _id: edits.id
-      }
+      data: tripData
     })
       .then(res => {
         return res;

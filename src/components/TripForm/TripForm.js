@@ -27,6 +27,7 @@ const TripForm = props => {
     destination.value = '';
     start_date.value = '';
     end_date.value = '';
+    category.value = '';
     setTripAdded(!tripAdded);
   };
 

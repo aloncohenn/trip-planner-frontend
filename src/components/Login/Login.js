@@ -40,8 +40,8 @@ const Login = props => {
       username: 'demoUser',
       password: 'demoAccount@1'
     }).then(res => {
-      if (res.data.error) {
-        setError(res.data.error);
+      if (res.error) {
+        setError(res.error);
       } else {
         const jwt = res.data.authToken;
         handleLogIn(jwt, redirect);

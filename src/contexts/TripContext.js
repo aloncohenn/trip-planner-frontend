@@ -15,7 +15,7 @@ const TripContextProvider = props => {
         setTrips(trips);
       });
     }
-  }, [trips]);
+  }, []);
 
   const getDate = () => {
     return moment().format('YYYY-MM-DD');
@@ -48,6 +48,17 @@ const TripContextProvider = props => {
     });
   };
 
+  const updateTrip = tripData => {
+    console.log(tripData);
+    TripApiService.updateTrip(tripData).then(res => {
+      if (res.error) {
+        return res.error;
+      } else {
+        TripApiService.getTrips().then(trips => setTrips(trips));
+      }
+    });
+  };
+
   const deleteTrip = id => {
     TripApiService.deleteTrip(id).then(() => {
       TripApiService.getTrips().then(trips => setTrips(trips));
@@ -55,7 +66,9 @@ const TripContextProvider = props => {
   };
 
   return (
-    <TripContext.Provider value={{ trips, addTrip, deleteTrip, getDate }}>
+    <TripContext.Provider
+      value={{ trips, addTrip, updateTrip, deleteTrip, getDate }}
+    >
       {props.children}
     </TripContext.Provider>
   );
