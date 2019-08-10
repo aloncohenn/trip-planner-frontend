@@ -27,7 +27,7 @@ const TripContextProvider = props => {
       if (res.error) {
         return res.error;
       } else {
-        TripApiService.getTrips().then(trips => setTrips(trips));
+        TripApiService.getTrips().then(trips => setFilteredTrips(trips));
       }
     });
   };
@@ -37,14 +37,14 @@ const TripContextProvider = props => {
       if (res.error) {
         return res.error;
       } else {
-        TripApiService.getTrips().then(trips => setTrips(trips));
+        TripApiService.getTrips().then(trips => setFilteredTrips(trips));
       }
     });
   };
 
   const deleteTrip = id => {
     TripApiService.deleteTrip(id).then(() => {
-      TripApiService.getTrips().then(trips => setTrips(trips));
+      TripApiService.getTrips().then(trips => setFilteredTrips(trips));
     });
   };
 
