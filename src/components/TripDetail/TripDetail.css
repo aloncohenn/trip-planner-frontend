@@ -75,13 +75,17 @@
 }
 
 .edit-btn {
-  border: none;
   margin: 0 auto;
   padding: 5px;
   cursor: pointer;
+  border: none;
 }
 
 .edit-btn:hover {
   box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+}
+
+.destination {
+  font-size: 22px;
 }

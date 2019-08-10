@@ -6,7 +6,12 @@ const ThemeContextProvider = props => {
   const [theme, setTheme] = useState({
     isLightTheme: true,
     light: { color: '#555', ui: '#fff', bg: '#eee', cardbg: '#fafafa' },
-    dark: { color: '#ddd', ui: '#333', bg: '#555', cardbg: '#666' }
+    dark: {
+      color: '#ddd',
+      ui: '#333',
+      bg: '#555',
+      cardbg: '#666'
+    }
   });
 
   // set the body color according to theme

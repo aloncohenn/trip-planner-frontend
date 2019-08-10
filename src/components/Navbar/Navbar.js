@@ -1,12 +1,20 @@
 import React, { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './Navbar.css';
+import jwtDecode from 'jwt-decode';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
+import TokenService from '../../services/TokenService';
+import './Navbar.css';
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const { status, handleLogOut } = useContext(UserContext);
+
+  const getUserName = () => {
+    const authToken = TokenService.getAuthToken();
+    const decoded = jwtDecode(authToken);
+    return decoded.sub;
+  };
 
   const renderLoggedOutView = () => {
     return (
@@ -60,6 +68,9 @@ const Navbar = () => {
             <Link to="/" className="nav-links" onClick={() => handleLogOut()}>
               Logout
             </Link>
+          </li>
+          <li>
+            <p className="nav-links">Welcome, {getUserName()}!</p>
           </li>
         </ul>
       </>

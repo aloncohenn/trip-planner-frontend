@@ -18,6 +18,7 @@ const TodoForm = ({ addTodo, trip_id }) => {
         type="text"
         className="input"
         value={value}
+        placeholder="add a todo..."
         onChange={e => setValue(e.target.value)}
       />
       <button type="submit">Add</button>

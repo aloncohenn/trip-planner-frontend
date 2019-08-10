@@ -7,18 +7,11 @@ import './TripForm.css';
 const TripForm = props => {
   const [error, setError] = useState(null);
   const [tripAdded, setTripAdded] = useState(false);
-  const { addTrip, getNow } = useContext(TripContext);
+  const { addTrip, getDate } = useContext(TripContext);
 
   const handleSubmitTrip = e => {
     e.preventDefault();
-    const {
-      title,
-      destination,
-      start_date,
-      end_date,
-      todos,
-      category
-    } = e.target;
+    const { title, destination, start_date, end_date, category } = e.target;
 
     console.log(category);
     setError(
@@ -27,15 +20,13 @@ const TripForm = props => {
         destination: destination.value,
         category: category.value,
         start_date: start_date.value,
-        end_date: end_date.value,
-        todos: todos.value
+        end_date: end_date.value
       })
     );
     title.value = '';
     destination.value = '';
     start_date.value = '';
     end_date.value = '';
-    todos.value = '';
     setTripAdded(!tripAdded);
   };
 
@@ -73,8 +64,8 @@ const TripForm = props => {
             type="date"
             name="start_date"
             id="start_date"
-            min={getNow()}
-            default={getNow()}
+            min={getDate()}
+            default={getDate()}
           />
         </div>
         <div>
@@ -83,13 +74,13 @@ const TripForm = props => {
             type="date"
             name="end_date"
             id="end_date"
-            min={getNow()}
-            default={getNow()}
+            min={getDate()}
+            default={getDate()}
           />
         </div>
         <div>
           <label htmlFor="category">Category</label>
-          <select name="category">
+          <select name="category" className="select-css">
             <option value="none" name="category">
               None
             </option>
@@ -100,16 +91,6 @@ const TripForm = props => {
               Vacation
             </option>
           </select>
-        </div>
-        <div>
-          <label htmlFor="todos">Todos</label>
-          <input
-            type="textarea"
-            name="todos"
-            id="todos"
-            placeholder="todos"
-            size="40"
-          />
         </div>
         <button type="submit">Submit</button>
         <p className="checkmark">

@@ -55,7 +55,11 @@ const Filter = props => {
       >
         Vacation
       </button>
-      <button className="add-btn" onClick={togglePopup}>
+      <button
+        className="add-btn"
+        onClick={togglePopup}
+        style={{ background: 'none' }}
+      >
         <FontAwesomeIcon icon="plus" color="#2376ae" size="3x" />
       </button>
       {showPopup && <AddTripPopup closePopup={togglePopup} />}

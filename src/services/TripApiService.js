@@ -28,7 +28,6 @@ const TripApiService = {
     const decoded = jwtDecode(authToken);
     // add the user id to the request
     tripData.user_id = decoded.user_id;
-    console.log(tripData);
     return axios({
       method: 'post',
       url: `${config.API_ENDPOINT}/trips/new_trip`,

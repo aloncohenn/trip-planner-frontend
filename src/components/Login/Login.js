@@ -69,6 +69,7 @@ const Login = props => {
             name="username"
             id="username"
             placeholder="username..."
+            required
           />
         </div>
         <div>
@@ -80,6 +81,7 @@ const Login = props => {
             name="password"
             id="password"
             placeholder="password..."
+            required
           />
         </div>
         <button type="submit">Log In</button>

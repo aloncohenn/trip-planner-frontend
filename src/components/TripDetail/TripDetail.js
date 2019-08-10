@@ -53,8 +53,12 @@ const TripDetail = ({ title, destination, start_date, end_date, trip_id }) => {
           <strong>{destination}</strong>
         </p>
       </div>
-      <button className="edit-btn" onClick={togglePopup}>
-        <FontAwesomeIcon icon="edit" color="#2376ae" size="2x" />
+      <button
+        className="edit-btn"
+        onClick={togglePopup}
+        style={{ background: 'none' }}
+      >
+        <FontAwesomeIcon icon="edit" color="#2376ae" size="3x" />
       </button>
       {showPopup && (
         <EditTripPopup closePopup={togglePopup} trip_id={trip_id} />
