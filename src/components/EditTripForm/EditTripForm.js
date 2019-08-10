@@ -95,12 +95,18 @@ const EditTripForm = props => {
             </option>
           </select>
         </div>
-        <button type="submit">Save</button>
+        <button
+          type="submit"
+          style={{ fontSize: '14px', fontWeight: 'bold', marginTop: '8px' }}
+        >
+          Save
+        </button>
         <input
           className="delete-btn"
           type="button"
           value="Delete"
           onClick={() => deleteTrip(tripData.id)}
+          style={{ fontSize: '14px', fontWeight: 'bold', marginTop: '8px' }}
         />
       </form>
       <div>

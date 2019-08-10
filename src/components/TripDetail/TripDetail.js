@@ -26,6 +26,20 @@ const TripDetail = ({ title, destination, start_date, end_date, trip_id }) => {
     return days;
   };
 
+  // const setTripStatusButton = () => {
+  //   console.log(status);
+  //   if (status === 'Created') {
+  //     return 'status-btn created';
+  //   }
+  //   if (status === 'InProgress') {
+  //     return 'status-btn in-progress';
+  //   }
+
+  //   if (status === 'Ready') {
+  //     return 'status-btn ready';
+  //   }
+  // };
+
   return (
     <li
       style={{ backgroundColor: theme.cardbg }}
@@ -61,7 +75,11 @@ const TripDetail = ({ title, destination, start_date, end_date, trip_id }) => {
         <FontAwesomeIcon icon="edit" color="#2376ae" size="3x" />
       </button>
       {showPopup && (
-        <EditTripPopup closePopup={togglePopup} trip_id={trip_id} />
+        <EditTripPopup
+          closePopup={togglePopup}
+          trip_id={trip_id}
+          destination={destination}
+        />
       )}
     </li>
   );

@@ -93,7 +93,12 @@ const TripForm = props => {
             </option>
           </select>
         </div>
-        <button type="submit">Submit</button>
+        <button
+          type="submit"
+          style={{ fontSize: '14px', fontWeight: 'bold', marginTop: '8px' }}
+        >
+          Save
+        </button>
         <p className="checkmark">
           {tripAdded && (
             <FontAwesomeIcon icon="check-circle" color="#2376ae" size="3x" />

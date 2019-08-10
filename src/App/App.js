@@ -12,9 +12,9 @@ import Login from '../components/Login/Login';
 const App = () => {
   return (
     <div className="App">
-      <UserContextProvider>
-        <ThemeContextProvider>
-          <TripContextProvider>
+      <TripContextProvider>
+        <UserContextProvider>
+          <ThemeContextProvider>
             <Navbar />
             <ThemeToggle />
             <Switch>
@@ -23,9 +23,9 @@ const App = () => {
               <Route path="/signup" component={SignUp} />
               <Route path="/dashboard" component={Dashboard} />
             </Switch>
-          </TripContextProvider>
-        </ThemeContextProvider>
-      </UserContextProvider>
+          </ThemeContextProvider>
+        </UserContextProvider>
+      </TripContextProvider>
     </div>
   );
 };

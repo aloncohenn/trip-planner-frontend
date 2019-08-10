@@ -70,7 +70,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <p className="nav-links">Welcome, {getUserName()}!</p>
+            <p className="welcome-message">Welcome, {getUserName()}!</p>
           </li>
         </ul>
       </>

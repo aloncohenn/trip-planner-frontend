@@ -5,8 +5,8 @@ import './EditTripPopup.css';
 
 const EditTripPopup = props => {
   return (
-    <div className="popup">
-      <div className="popup_inner">
+    <div className="edit-popup">
+      <div className="edit-popup-inner">
         <h1>{props.text}</h1>
         <button onClick={props.closePopup} className="close-popup">
           <FontAwesomeIcon icon="window-close" color="#2376ae" size="3x" />

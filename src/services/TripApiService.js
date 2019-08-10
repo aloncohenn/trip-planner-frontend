@@ -4,6 +4,28 @@ import TokenService from './TokenService';
 import jwtDecode from 'jwt-decode';
 
 const TripApiService = {
+  postTrip(tripData) {
+    const authToken = TokenService.getAuthToken();
+    const decoded = jwtDecode(authToken);
+    // add the user id to the request
+    tripData.user_id = decoded.user_id;
+    return axios({
+      method: 'post',
+      url: `${config.API_ENDPOINT}/trips/new_trip`,
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      },
+      data: tripData
+    })
+      .then(res => {
+        return res;
+      })
+      .catch(error => {
+        return error.response.data;
+      });
+  },
+
   getTrips() {
     const authToken = TokenService.getAuthToken();
     const decoded = jwtDecode(authToken);
@@ -23,14 +45,14 @@ const TripApiService = {
       });
   },
 
-  postTrip(tripData) {
+  updateTrip(tripData) {
     const authToken = TokenService.getAuthToken();
     const decoded = jwtDecode(authToken);
     // add the user id to the request
     tripData.user_id = decoded.user_id;
     return axios({
-      method: 'post',
-      url: `${config.API_ENDPOINT}/trips/new_trip`,
+      method: 'put',
+      url: `${config.API_ENDPOINT}/trips/update_trip`,
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
@@ -56,28 +78,6 @@ const TripApiService = {
       data: {
         trip_id
       }
-    })
-      .then(res => {
-        return res;
-      })
-      .catch(error => {
-        return error.response.data;
-      });
-  },
-
-  updateTrip(tripData) {
-    const authToken = TokenService.getAuthToken();
-    const decoded = jwtDecode(authToken);
-    // add the user id to the request
-    tripData.user_id = decoded.user_id;
-    return axios({
-      method: 'put',
-      url: `${config.API_ENDPOINT}/trips/update_trip`,
-      headers: {
-        'content-type': 'application/json',
-        authorization: `bearer ${TokenService.getAuthToken()}`
-      },
-      data: tripData
     })
       .then(res => {
         return res;

@@ -4,23 +4,6 @@ import TokenService from './TokenService';
 import jwtDecode from 'jwt-decode';
 
 const TodoApiService = {
-  getTodos(trip_id) {
-    return axios({
-      method: 'get',
-      url: `${config.API_ENDPOINT}/todos/get_todos/${trip_id}`,
-      headers: {
-        'content-type': 'application/json',
-        authorization: `bearer ${TokenService.getAuthToken()}`
-      }
-    })
-      .then(res => {
-        return res.data;
-      })
-      .catch(error => {
-        return error.response.data;
-      });
-  },
-
   postTodo(todoData) {
     const authToken = TokenService.getAuthToken();
     const decoded = jwtDecode(authToken);
@@ -42,20 +25,17 @@ const TodoApiService = {
       });
   },
 
-  deleteTodo(todo_id) {
+  getTodos(trip_id) {
     return axios({
-      method: 'delete',
-      url: `${config.API_ENDPOINT}/todos/delete_todo`,
+      method: 'get',
+      url: `${config.API_ENDPOINT}/todos/get_todos/${trip_id}`,
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
-      },
-      data: {
-        todo_id
       }
     })
       .then(res => {
-        return res;
+        return res.data;
       })
       .catch(error => {
         return error.response.data;
@@ -68,12 +48,32 @@ const TodoApiService = {
       url: `${config.API_ENDPOINT}/todos/update_todo`,
       headers: {
         'content-type': 'application/json',
-        authorization: `${TokenService.getAuthToken()}`
+        authorization: `bearer ${TokenService.getAuthToken()}`
       },
       data: {
         id: data.id,
         title: data.title,
         done_status: data.done_status
+      }
+    })
+      .then(res => {
+        return res;
+      })
+      .catch(error => {
+        return error.response.data;
+      });
+  },
+
+  deleteTodo(todo_id) {
+    return axios({
+      method: 'delete',
+      url: `${config.API_ENDPOINT}/todos/delete_todo`,
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      },
+      data: {
+        todo_id
       }
     })
       .then(res => {

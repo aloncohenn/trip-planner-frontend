@@ -65,6 +65,13 @@ const TripContextProvider = props => {
     setFilteredTrips(filteredTrips);
   };
 
+  const loadTripsForUser = () => {
+    TripApiService.getTrips().then(trips => {
+      setTrips(trips);
+      setFilteredTrips(trips);
+    });
+  };
+
   return (
     <TripContext.Provider
       value={{
@@ -74,7 +81,8 @@ const TripContextProvider = props => {
         filteredTrips,
         filterTrips,
         navFilter,
-        getDate
+        getDate,
+        loadTripsForUser
       }}
     >
       {props.children}
