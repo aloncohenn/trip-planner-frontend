@@ -6,13 +6,13 @@ import './SearchBox.css';
 const SearchBox = () => {
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const theme = isLightTheme ? light : dark;
-  const { filterItems } = useContext(TripContext);
+  const { filterTrips } = useContext(TripContext);
   const [val, setVal] = useState('');
 
   const handleChange = e => {
     const { value } = e.target;
     setVal(value);
-    filterItems(value);
+    filterTrips(value);
   };
 
   return (

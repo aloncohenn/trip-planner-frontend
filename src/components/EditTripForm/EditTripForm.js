@@ -7,9 +7,9 @@ import './EditTripForm.css';
 
 const EditTripForm = props => {
   const [error, setError] = useState(null);
-  const { trips, updateTrip, deleteTrip } = useContext(TripContext);
+  const { filteredTrips, updateTrip, deleteTrip } = useContext(TripContext);
 
-  const tripData = trips.find(trip => trip.id === props.trip_id);
+  const tripData = filteredTrips.find(trip => trip.id === props.trip_id);
 
   const handleSubmitTrip = e => {
     e.preventDefault();

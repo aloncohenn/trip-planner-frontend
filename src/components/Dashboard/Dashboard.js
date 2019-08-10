@@ -6,11 +6,11 @@ import Filter from '../Filter/Filter';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const { trips } = useContext(TripContext);
+  const { filteredTrips } = useContext(TripContext);
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const theme = isLightTheme ? light : dark;
 
-  const tripList = trips.map(trip => {
+  const tripList = filteredTrips.map(trip => {
     return (
       <TripDetail
         item={trip}
