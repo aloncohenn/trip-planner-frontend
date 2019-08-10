@@ -6,7 +6,7 @@ import AddTripPopup from '../AddTripPopup/AddTripPopup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Filter.css';
 
-const Filter = props => {
+const Filter = () => {
   const { navFilter } = useContext(TripContext);
   const [showPopup, setShowPopup] = useState(false);
   const { isLightTheme, light, dark } = useContext(ThemeContext);

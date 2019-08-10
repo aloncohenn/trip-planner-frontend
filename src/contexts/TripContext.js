@@ -7,12 +7,13 @@ export const TripContext = createContext();
 
 const TripContextProvider = props => {
   const [trips, setTrips] = useState([]);
-  // const [filteredTrips, setFilteredTrips] = useState(trips);
+  const [filteredTrips, setFilteredTrips] = useState([]);
 
   useEffect(() => {
     if (TokenService.hasAuthToken()) {
       TripApiService.getTrips().then(trips => {
         setTrips(trips);
+        setFilteredTrips(trips);
       });
     }
   }, []);
@@ -20,23 +21,6 @@ const TripContextProvider = props => {
   const getDate = () => {
     return moment().format('YYYY-MM-DD');
   };
-
-  // const filterTrips = value => {
-  //   let filteredTrips = trips.filter(trip => {
-  //     return trip.title.toLowerCase().startsWith(value.toLowerCase());
-  //   });
-  //   setFilteredTrips(filteredTrips);
-  // };
-
-  // const navFilter = value => {
-  //   if (value === 'None') {
-  //     return setFilteredTrips(trips);
-  //   }
-  //   let filteredTrips = trips.filter(trip => {
-  //     return trip.category.startsWith(value);
-  //   });
-  //   setFilteredTrips(filteredTrips);
-  // };
 
   const addTrip = tripData => {
     TripApiService.postTrip(tripData).then(res => {
@@ -49,7 +33,6 @@ const TripContextProvider = props => {
   };
 
   const updateTrip = tripData => {
-    console.log(tripData);
     TripApiService.updateTrip(tripData).then(res => {
       if (res.error) {
         return res.error;
@@ -65,9 +48,34 @@ const TripContextProvider = props => {
     });
   };
 
+  const filterTrips = value => {
+    let filteredTrips = trips.filter(trip => {
+      return trip.title.toLowerCase().startsWith(value.toLowerCase());
+    });
+    setFilteredTrips(filteredTrips);
+  };
+
+  const navFilter = value => {
+    if (value === 'None') {
+      return setFilteredTrips(trips);
+    }
+    let filteredTrips = trips.filter(trip => {
+      return trip.category.toLowerCase().startsWith(value.toLowerCase());
+    });
+    setFilteredTrips(filteredTrips);
+  };
+
   return (
     <TripContext.Provider
-      value={{ trips, addTrip, updateTrip, deleteTrip, getDate }}
+      value={{
+        addTrip,
+        updateTrip,
+        deleteTrip,
+        filteredTrips,
+        filterTrips,
+        navFilter,
+        getDate
+      }}
     >
       {props.children}
     </TripContext.Provider>
