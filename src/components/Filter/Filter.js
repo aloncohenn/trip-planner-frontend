@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { TripContext } from '../../contexts/TripContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SearchBox from '../SearchBox/SearchBox';
 import AddTripPopup from '../AddTripPopup/AddTripPopup';
 import './Filter.css';
@@ -30,6 +31,7 @@ const Filter = () => {
       style={{ background: theme.ui, color: theme.color }}
       className="filter-nav"
     >
+      <h3>Filter Trips</h3>
       <div className="filter-buttons">
         <button
           type="button"
@@ -56,6 +58,12 @@ const Filter = () => {
           Vacation
         </button>
         <button onClick={togglePopup} className="filter-btn">
+          <FontAwesomeIcon
+            icon="plus"
+            color="#ffffff"
+            size="1x"
+            style={{ position: 'relative', right: '10' }}
+          />
           New Trip
         </button>
         {showPopup && <AddTripPopup closePopup={togglePopup} />}

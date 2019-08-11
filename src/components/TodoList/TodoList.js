@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useLayoutEffect } from 'react';
 import TodoApiService from '../../services/TodoApiService';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import TodoForm from '../TodoForm/TodoForm';
@@ -10,7 +10,7 @@ const TodoList = ({ trip_id }) => {
   const theme = isLightTheme ? light : dark;
   const [todos, setTodos] = useState([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     TodoApiService.getTodos(trip_id).then(todos => setTodos(todos));
   });
 
