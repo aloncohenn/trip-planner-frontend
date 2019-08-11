@@ -11,9 +11,11 @@ const Navbar = () => {
   const { status, handleLogOut } = useContext(UserContext);
 
   const getUserName = () => {
-    const authToken = TokenService.getAuthToken();
-    const decoded = jwtDecode(authToken);
-    return decoded.sub;
+    if (TokenService.hasAuthToken()) {
+      const authToken = TokenService.getAuthToken();
+      const decoded = jwtDecode(authToken);
+      return decoded.sub;
+    }
   };
 
   const renderLoggedOutView = () => {

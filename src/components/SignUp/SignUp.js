@@ -17,8 +17,8 @@ const SignUp = props => {
 
   function signupUser() {
     AuthApiService.postUser({ ...values }).then(res => {
-      if (res.data.error) {
-        setError(res.data.error);
+      if (res.error) {
+        setError(res.error);
         return;
       } else {
         props.history.replace('/login');

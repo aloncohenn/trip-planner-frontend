@@ -4,7 +4,7 @@
   margin: 50px auto;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: #2376ae 0 0 10px;
+  box-shadow: rgb(35, 118, 174) 0 0 10px;
   text-align: center;
 }
 
@@ -18,7 +18,7 @@
   margin-top: 5px;
   padding: 8px;
   border-radius: 8px;
-  background-color: #2376ae;
+  background-color: rgb(35, 118, 174);
   color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
 }

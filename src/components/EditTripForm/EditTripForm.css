@@ -1,7 +1,7 @@
 .delete-btn {
   margin: none;
   border-radius: 8px;
-  background-color: #2376ae;
+  background-color: rgb(35, 118, 174);
   color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   height: 35px;
@@ -50,7 +50,7 @@
 }
 .select-css:focus {
   border-color: #aaa;
-  box-shadow: 0 0 1px 3px #2376ae;
+  box-shadow: 0 0 1px 3px rgb(35, 118, 174);
   box-shadow: 0 0 0 3px -moz-mac-focusring;
   color: #222;
   outline: none;

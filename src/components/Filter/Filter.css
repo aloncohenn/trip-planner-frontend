@@ -1,55 +1,19 @@
-.filter-nav {
+.filter-buttons {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  width: 50%;
-  margin: 0 auto;
-  padding: 20px;
+  flex-direction: column;
 }
 
-.filter-nav-btn {
-  padding: 5px;
-  margin: 3px;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.filter-nav-btn {
-  padding: 8px 15px;
-  font-size: 0.8rem;
-  font-family: 'Rubik', sans-serif;
-  font-weight: bold;
-  background-color: #2376ae;
-  border: 0px;
+.filter-btn {
+  padding: 10px;
+  width: 60%;
+  margin: 10px auto;
   border-radius: 15px;
-}
-
-.filter-nav-btn:hover {
-  background-color: rgb(15, 190, 216);
-}
-
-.add-btn {
-  border: none;
-  margin-left: 5px;
-  padding: 5px;
+  background-color: rgb(35, 118, 174);
+  color: #ffffff;
+  font-size: 16px;
   cursor: pointer;
 }
 
-.add-btn:hover {
-  box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-}
-
-@media only screen and (max-width: 600px) {
-  .filter-nav {
-    width: 100%;
-  }
-  .filter-nav-btn {
-    display: block;
-    width: 100%;
-  }
-
-  input.filter-nav-btn {
-    max-width: 40%;
-  }
+.filter-btn:hover {
+  background-color: rgb(15, 190, 216);
 }

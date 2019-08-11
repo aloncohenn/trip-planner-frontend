@@ -1,15 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { TripContext } from '../../contexts/TripContext';
+import { ThemeContext } from '../../contexts/ThemeContext';
 import TodoList from '../TodoList/TodoList';
 import moment from 'moment';
 import Emoji from '../Emoji/Emoji';
 import './EditTripForm.css';
 
-const EditTripForm = props => {
+const EditTripForm = ({ tripData }) => {
   const [error, setError] = useState(null);
-  const { filteredTrips, updateTrip, deleteTrip } = useContext(TripContext);
-
-  const tripData = filteredTrips.find(trip => trip.id === props.trip_id);
+  const { updateTrip, deleteTrip } = useContext(TripContext);
+  const { isLightTheme, light, dark } = useContext(ThemeContext);
+  const theme = isLightTheme ? light : dark;
 
   const handleSubmitTrip = e => {
     e.preventDefault();
@@ -28,8 +29,8 @@ const EditTripForm = props => {
   };
 
   return (
-    <section>
-      <form className="edit-trip trip-form" onSubmit={handleSubmitTrip}>
+    <section style={{ background: theme.ui, color: theme.color }}>
+      <form className="trip-form" onSubmit={handleSubmitTrip}>
         <div role="alert">
           {error && (
             <p className="error">
@@ -38,13 +39,13 @@ const EditTripForm = props => {
           )}
         </div>
         <div>
-          <label htmlFor="title">Vacation Title</label>
+          <label htmlFor="title">Trip Title</label>
           <input
             type="text"
             name="title"
-            id="title"
-            defaultValue={tripData.title}
             className="input-val"
+            key={`title:${tripData.title || tripData.title}`}
+            defaultValue={tripData.title || tripData.title}
           />
         </div>
         <div>
@@ -52,9 +53,9 @@ const EditTripForm = props => {
           <input
             type="text"
             name="destination"
-            id="destination"
-            defaultValue={tripData.destination}
             className="input-val"
+            key={`destination:${tripData.destination || tripData.destination}`}
+            defaultValue={tripData.destination}
           />
         </div>
         <div>
@@ -62,9 +63,9 @@ const EditTripForm = props => {
           <input
             type="date"
             name="start_date"
-            id="start_date"
-            defaultValue={moment(tripData.start_date).format('YYYY-MM-DD')}
             className="input-val"
+            key={`start_date:${tripData.start_date || tripData.start_date}`}
+            defaultValue={moment(tripData.start_date).format('YYYY-MM-DD')}
           />
         </div>
         <div>
@@ -72,9 +73,9 @@ const EditTripForm = props => {
           <input
             type="date"
             name="end_date"
-            id="end_date"
-            defaultValue={moment(tripData.end_date).format('YYYY-MM-DD')}
             className="input-val"
+            key={`end_date:${tripData.end_date || tripData.end_date}`}
+            defaultValue={moment(tripData.end_date).format('YYYY-MM-DD')}
           />
         </div>
         <div>
@@ -82,6 +83,7 @@ const EditTripForm = props => {
           <select
             name="category"
             className="select-css"
+            key={`category:${tripData.category || tripData.category}`}
             defaultValue={tripData.category}
           >
             <option value="none" name="category">

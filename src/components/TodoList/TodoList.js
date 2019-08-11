@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import TodoApiService from '../../services/TodoApiService';
+import { ThemeContext } from '../../contexts/ThemeContext';
 import TodoForm from '../TodoForm/TodoForm';
 import Todo from '../Todo/Todo';
 import './TodoList.css';
 
 const TodoList = ({ trip_id }) => {
+  const { isLightTheme, light, dark } = useContext(ThemeContext);
+  const theme = isLightTheme ? light : dark;
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -34,9 +37,15 @@ const TodoList = ({ trip_id }) => {
   };
 
   return (
-    <div className="todo-list">
+    <div
+      className="todo-list"
+      style={{ background: theme.ui, color: theme.color }}
+    >
       <h4>Todo List</h4>
-      <div className="todos-container">
+      <div
+        className="todos-container"
+        style={{ background: theme.ui, color: theme.black }}
+      >
         {todos.map((todo, idx) => (
           <Todo key={idx} idx={idx} todo={todo} updateTodo={updateTodo} />
         ))}

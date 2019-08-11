@@ -10,7 +10,8 @@ const ThemeContextProvider = props => {
       color: '#ddd',
       ui: '#333',
       bg: '#555',
-      cardbg: '#666'
+      cardbg: '#666',
+      black: '#000000'
     }
   });
 
