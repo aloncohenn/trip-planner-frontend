@@ -1,36 +1,56 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { TripContext } from '../../contexts/TripContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import TripDetail from '../TripDetail/TripDetail';
 import Filter from '../Filter/Filter';
 import './Dashboard.css';
+import EditTripForm from '../EditTripForm/EditTripForm';
 
 const Dashboard = () => {
   const { filteredTrips } = useContext(TripContext);
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const theme = isLightTheme ? light : dark;
+  const [tripID, setTripID] = useState(null);
 
-  const tripList = filteredTrips.map(trip => {
+  useEffect(() => {
+    setTripID(tripID);
+  }, [tripID]);
+
+  const getTripForm = id => {
+    setTripID(id);
+  };
+
+  const rows = filteredTrips.map((trip, idx) => {
     return (
-      <TripDetail
-        item={trip}
-        key={trip.id}
-        trip_id={trip.id}
-        title={trip.title}
-        destination={trip.destination}
-        category={trip.category}
-        start_date={trip.start_date}
-        end_date={trip.end_date}
-      />
+      <tr key={idx}>
+        <td>
+          <button onClick={() => getTripForm(trip.id)}>{trip.title} </button>
+        </td>
+        <td>
+          <button onClick={() => getTripForm(trip.id)}>
+            {trip.destination}{' '}
+          </button>
+        </td>
+      </tr>
     );
   });
 
   return (
-    <div className="dashboard" style={{ background: theme.ui }}>
-      <Filter />
-      <ul className="trip-list" style={{ color: theme.color }}>
-        {tripList}
-      </ul>
+    <div className="row" style={{ background: theme.ui }}>
+      <div className="column">
+        <Filter />
+      </div>
+      <div className="column">
+        <table style={{ color: theme.color }}>
+          <tbody>
+            <tr>
+              <th>Title</th>
+              <th>Destination</th>
+            </tr>
+            {rows}
+          </tbody>
+        </table>
+      </div>
+      <div className="column">{tripID && <EditTripForm tripID={tripID} />}</div>
     </div>
   );
 };

@@ -4,11 +4,13 @@
   padding: 5px;
   max-width: 300px;
   margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: rgb(35, 118, 174) 0 0 10px;
 }
 
 .todo {
   background: #fff;
-  box-shadow: #2376ae 0 0 5px;
+  box-shadow: rgb(35, 118, 174) 0 0 5px;
   padding: 3px 10px;
   font-size: 12px;
   margin: 8px;
@@ -21,4 +23,8 @@
 .todos-container {
   overflow-y: auto;
   height: 140px;
+}
+
+.todo-list h4 {
+  text-align: center;
 }

@@ -42,13 +42,8 @@ const TripForm = props => {
           )}
         </div>
         <div>
-          <label htmlFor="title">Vacation Title</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            placeholder="First family vacation"
-          />
+          <label htmlFor="title">Trip Title</label>
+          <input type="text" name="title" id="title" placeholder="Title..." />
         </div>
         <div>
           <label htmlFor="destination">Destination</label>
