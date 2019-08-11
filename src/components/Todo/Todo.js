@@ -1,7 +1,8 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Todo.css';
 
-const Todo = ({ todo, updateTodo }) => {
+const Todo = ({ todo, updateTodo, deleteTodo }) => {
   return (
     <div
       className="todo"
@@ -15,9 +16,16 @@ const Todo = ({ todo, updateTodo }) => {
       <div>
         <button
           onClick={() => updateTodo(todo.id, todo.title, !todo.done_status)}
-          className="complete-todo-btn"
+          className="todo-btn"
         >
-          Complete
+          {todo.done_status ? (
+            <FontAwesomeIcon icon="check-square" color="#ffffff" size="1x" />
+          ) : (
+            <FontAwesomeIcon icon="square" color="#ffffff" size="1x" />
+          )}
+        </button>
+        <button onClick={() => deleteTodo(todo.id)} className="todo-btn">
+          <FontAwesomeIcon icon="trash-alt" color="#ffffff" size="1x" />
         </button>
       </div>
     </div>

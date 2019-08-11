@@ -8,9 +8,23 @@ const ThemeToggle = () => {
 
   const setIcon = () => {
     if (isLightTheme) {
-      return <FontAwesomeIcon icon="moon" color="#333" size="3x" />;
+      return (
+        <FontAwesomeIcon
+          icon="moon"
+          color="#333"
+          size="3x"
+          style={{ cursor: 'pointer' }}
+        />
+      );
     }
-    return <FontAwesomeIcon icon="sun" color="yellow" size="3x" />;
+    return (
+      <FontAwesomeIcon
+        icon="sun"
+        color="yellow"
+        size="3x"
+        style={{ cursor: 'pointer' }}
+      />
+    );
   };
 
   return (

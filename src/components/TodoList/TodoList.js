@@ -12,7 +12,7 @@ const TodoList = ({ trip_id }) => {
 
   useLayoutEffect(() => {
     TodoApiService.getTodos(trip_id).then(todos => setTodos(todos));
-  });
+  }, [trip_id]);
 
   const addTodo = (title, trip_id, done_status = false) => {
     const data = {
@@ -36,6 +36,12 @@ const TodoList = ({ trip_id }) => {
     });
   };
 
+  const deleteTodo = id => {
+    TodoApiService.deleteTodo(id).then(() => {
+      TodoApiService.getTodos(trip_id).then(todos => setTodos(todos));
+    });
+  };
+
   return (
     <div
       className="todo-list"
@@ -47,7 +53,13 @@ const TodoList = ({ trip_id }) => {
         style={{ background: theme.ui, color: theme.black }}
       >
         {todos.map((todo, idx) => (
-          <Todo key={idx} idx={idx} todo={todo} updateTodo={updateTodo} />
+          <Todo
+            key={idx}
+            idx={idx}
+            todo={todo}
+            updateTodo={updateTodo}
+            deleteTodo={deleteTodo}
+          />
         ))}
       </div>
       <TodoForm addTodo={addTodo} trip_id={trip_id} />

@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { TripContext } from '../../contexts/TripContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import Filter from '../Filter/Filter';
-import './Dashboard.css';
 import EditTripForm from '../EditTripForm/EditTripForm';
+import Filter from '../Filter/Filter';
+import moment from 'moment';
+import './Dashboard.css';
 
 const Dashboard = () => {
   const { filteredTrips } = useContext(TripContext);
@@ -17,11 +18,27 @@ const Dashboard = () => {
     setTripID(id);
   };
 
+  const getDuration = (startDate, endDate) => {
+    // trim the dates for presentation
+    startDate = startDate.split('T');
+    endDate = endDate.split('T');
+    const start = moment(startDate[0]);
+    const end = moment(endDate[0]);
+    const duration = moment.duration(end.diff(start));
+    const days = duration.asDays();
+    return days;
+  };
+
   const rows = filteredTrips.map((trip, idx) => {
     return (
-      <tr key={idx} onClick={() => getTripForm(trip.id)}>
+      <tr
+        key={idx}
+        onClick={() => getTripForm(trip.id)}
+        className={!isLightTheme ? 'dark-mode-row' : null}
+      >
         <td>{trip.title}</td>
         <td>{trip.destination}</td>
+        <td>{getDuration(trip.start_date, trip.end_date)} days</td>
       </tr>
     );
   });
@@ -37,6 +54,7 @@ const Dashboard = () => {
             <tr>
               <th>Title</th>
               <th>Destination</th>
+              <th>Duration</th>
             </tr>
             {rows}
           </tbody>

@@ -1,5 +1,5 @@
-.complete-todo-btn {
-  margin-top: 5px;
+.todo-btn {
+  margin: 2px;
   padding: 6px;
   border-radius: 8px;
   background-color: rgb(35, 118, 174);
@@ -7,6 +7,6 @@
   cursor: pointer;
 }
 
-.complete-todo-btn:hover {
+.todo-btn:hover {
   background-color: rgb(15, 190, 216);
 }

@@ -17,7 +17,9 @@ import {
   faWindowClose,
   faCheckCircle,
   faEdit,
-  faTrashAlt
+  faTrashAlt,
+  faCheckSquare,
+  faSquare
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -31,7 +33,9 @@ library.add(
   faWindowClose,
   faCheckCircle,
   faEdit,
-  faTrashAlt
+  faTrashAlt,
+  faCheckSquare,
+  faSquare
 );
 
 ReactDOM.render(

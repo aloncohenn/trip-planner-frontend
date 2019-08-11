@@ -1,5 +1,7 @@
 .todo-form {
   margin: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .todo-form button {
@@ -10,6 +12,7 @@
   background-color: rgb(35, 118, 174);
   color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
+  height: 32px;
 }
 
 .todo-form button:hover {

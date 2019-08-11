@@ -28,37 +28,25 @@ const EditTripForm = ({ tripData }) => {
     );
   };
 
-  const getDuration = (startDate, endDate) => {
-    // trim the dates for presentation
-    startDate = startDate.split('T');
-    endDate = endDate.split('T');
-    const start = moment(startDate[0]);
-    const end = moment(endDate[0]);
-    const duration = moment.duration(end.diff(start));
-    const days = duration.asDays();
-    return days;
-  };
+  // TODO: set and show trip status
 
-  const setTripStatus = status => {
-    console.log(status);
-    if (status === 'Created') {
-      return 'status-btn created';
-    }
-    if (status === 'InProgress') {
-      return 'status-btn in-progress';
-    }
+  // const setTripStatus = status => {
+  //   console.log(status);
+  //   if (status === 'Created') {
+  //     return 'status-btn created';
+  //   }
+  //   if (status === 'InProgress') {
+  //     return 'status-btn in-progress';
+  //   }
 
-    if (status === 'Ready') {
-      return 'status-btn ready';
-    }
-  };
+  //   if (status === 'Ready') {
+  //     return 'status-btn ready';
+  //   }
+  // };
 
   return (
     <section style={{ background: theme.ui, color: theme.color }}>
       <h3 id="edit-header">Edit Trip</h3>
-      {/* <button className={setTripStatus(tripData.status)}>
-        {tripData.status}
-      </button> */}
       <form className="trip-form" onSubmit={handleSubmitTrip}>
         <div role="alert">
           {error && (
@@ -126,10 +114,6 @@ const EditTripForm = ({ tripData }) => {
             </option>
           </select>
         </div>
-        <p style={{ paddingTop: '5px' }}>
-          <strong>Duration: </strong>{' '}
-          {getDuration(tripData.start_date, tripData.end_date)} days
-        </p>
         <button
           type="submit"
           style={{ fontSize: '14px', fontWeight: 'bold', marginTop: '8px' }}
