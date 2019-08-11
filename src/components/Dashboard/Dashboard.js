@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { TripContext } from '../../contexts/TripContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import Filter from '../Filter/Filter';
@@ -11,9 +11,7 @@ const Dashboard = () => {
   const theme = isLightTheme ? light : dark;
   const [tripID, setTripID] = useState(null);
 
-  useEffect(() => {
-    setTripID(tripID);
-  }, [tripID]);
+  const tripData = filteredTrips.find(trip => trip.id === tripID);
 
   const getTripForm = id => {
     setTripID(id);
@@ -21,15 +19,9 @@ const Dashboard = () => {
 
   const rows = filteredTrips.map((trip, idx) => {
     return (
-      <tr key={idx}>
-        <td>
-          <button onClick={() => getTripForm(trip.id)}>{trip.title} </button>
-        </td>
-        <td>
-          <button onClick={() => getTripForm(trip.id)}>
-            {trip.destination}{' '}
-          </button>
-        </td>
+      <tr key={idx} onClick={() => getTripForm(trip.id)}>
+        <td>{trip.title}</td>
+        <td>{trip.destination}</td>
       </tr>
     );
   });
@@ -50,7 +42,9 @@ const Dashboard = () => {
           </tbody>
         </table>
       </div>
-      <div className="column">{tripID && <EditTripForm tripID={tripID} />}</div>
+      <div className="column">
+        {tripData && <EditTripForm tripData={tripData} />}
+      </div>
     </div>
   );
 };

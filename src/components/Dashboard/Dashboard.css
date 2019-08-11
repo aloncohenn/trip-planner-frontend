@@ -28,6 +28,7 @@ td {
   text-align: center;
   padding: 10px;
   font-size: 18px;
+  cursor: pointer;
 }
 
 tr:nth-child(even) {

@@ -29,8 +29,7 @@ const Login = props => {
       } else {
         username.value = '';
         password.value = '';
-        const jwt = res.data.authToken;
-        handleLogIn(jwt, redirect);
+        handleLogIn(res.data.authToken, redirect);
       }
     });
   };
@@ -43,8 +42,7 @@ const Login = props => {
       if (res.error) {
         setError(res.error);
       } else {
-        const jwt = res.data.authToken;
-        handleLogIn(jwt, redirect);
+        handleLogIn(res.data.authToken, redirect);
       }
     });
   };

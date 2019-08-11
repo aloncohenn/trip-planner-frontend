@@ -18,7 +18,8 @@ const AuthApiService = {
         return res;
       })
       .catch(error => {
-        return error.response;
+        console.log(error);
+        return error.response.data;
       });
   },
 
@@ -38,7 +39,7 @@ const AuthApiService = {
         return res;
       })
       .catch(error => {
-        return error.response;
+        return error.response.data;
       });
   }
 };

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Emoji from '../Emoji/Emoji';
 import './TripForm.css';
 
-const TripForm = props => {
+const TripForm = () => {
   const [error, setError] = useState(null);
   const [tripAdded, setTripAdded] = useState(false);
   const { addTrip, getDate } = useContext(TripContext);
@@ -12,8 +12,6 @@ const TripForm = props => {
   const handleSubmitTrip = e => {
     e.preventDefault();
     const { title, destination, start_date, end_date, category } = e.target;
-
-    console.log(category);
     setError(
       addTrip({
         title: title.value,

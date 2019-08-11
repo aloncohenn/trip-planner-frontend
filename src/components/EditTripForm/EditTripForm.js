@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { TripContext } from '../../contexts/TripContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import TodoList from '../TodoList/TodoList';
@@ -6,20 +6,11 @@ import moment from 'moment';
 import Emoji from '../Emoji/Emoji';
 import './EditTripForm.css';
 
-const EditTripForm = ({ tripID }) => {
+const EditTripForm = ({ tripData }) => {
   const [error, setError] = useState(null);
-  const { filteredTrips, updateTrip, deleteTrip } = useContext(TripContext);
-  const [data, setData] = useState({});
+  const { updateTrip, deleteTrip } = useContext(TripContext);
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const theme = isLightTheme ? light : dark;
-
-  const tripData = filteredTrips.find(trip => trip.id === tripID);
-
-  useEffect(() => {
-    setData(tripData);
-  }, [tripData]);
-
-  console.log(data);
 
   const handleSubmitTrip = e => {
     e.preventDefault();
@@ -39,7 +30,7 @@ const EditTripForm = ({ tripID }) => {
 
   return (
     <section style={{ background: theme.ui, color: theme.color }}>
-      <form className="edit-trip trip-form" onSubmit={handleSubmitTrip}>
+      <form className="trip-form" onSubmit={handleSubmitTrip}>
         <div role="alert">
           {error && (
             <p className="error">
@@ -52,9 +43,9 @@ const EditTripForm = ({ tripID }) => {
           <input
             type="text"
             name="title"
-            id="title"
-            defaultValue={data.title}
             className="input-val"
+            key={`title:${tripData.title || tripData.title}`}
+            defaultValue={tripData.title || tripData.title}
           />
         </div>
         <div>
@@ -62,9 +53,9 @@ const EditTripForm = ({ tripID }) => {
           <input
             type="text"
             name="destination"
-            id="destination"
-            defaultValue={data.destination}
             className="input-val"
+            key={`destination:${tripData.destination || tripData.destination}`}
+            defaultValue={tripData.destination}
           />
         </div>
         <div>
@@ -72,9 +63,9 @@ const EditTripForm = ({ tripID }) => {
           <input
             type="date"
             name="start_date"
-            id="start_date"
-            defaultValue={moment(data.start_date).format('YYYY-MM-DD')}
             className="input-val"
+            key={`start_date:${tripData.start_date || tripData.start_date}`}
+            defaultValue={moment(tripData.start_date).format('YYYY-MM-DD')}
           />
         </div>
         <div>
@@ -82,9 +73,9 @@ const EditTripForm = ({ tripID }) => {
           <input
             type="date"
             name="end_date"
-            id="end_date"
-            defaultValue={moment(data.end_date).format('YYYY-MM-DD')}
             className="input-val"
+            key={`end_date:${tripData.end_date || tripData.end_date}`}
+            defaultValue={moment(tripData.end_date).format('YYYY-MM-DD')}
           />
         </div>
         <div>
@@ -92,7 +83,8 @@ const EditTripForm = ({ tripID }) => {
           <select
             name="category"
             className="select-css"
-            defaultValue={data.category}
+            key={`category:${tripData.category || tripData.category}`}
+            defaultValue={tripData.category}
           >
             <option value="none" name="category">
               None
@@ -115,7 +107,7 @@ const EditTripForm = ({ tripID }) => {
           className="delete-btn"
           type="button"
           value="Delete"
-          onClick={() => deleteTrip(data.id)}
+          onClick={() => deleteTrip(tripData.id)}
           style={{ fontSize: '14px', fontWeight: 'bold', marginTop: '8px' }}
         />
       </form>
