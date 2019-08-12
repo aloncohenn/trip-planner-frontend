@@ -6,13 +6,13 @@
 
 ![Light Mode](https://imgur.com/t8muUtb.png) ![Dark Mode](https://imgur.com/Hx6S11U.png)
 
-#### Frontend Stack
+#### Frontend
 
 - React
 - Built with React Hooks & Context API
 - Vanilla CSS
 
-#### Backend Stack
+#### Backend
 
 - Node.js / Express
 - PostgreSQL
