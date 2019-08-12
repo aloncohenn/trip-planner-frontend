@@ -36,9 +36,8 @@ const EditTripForm = ({ tripData }) => {
       // create a counter for each todo
       let trueTodos = 0;
       // iterate through each todo status, when one is true, increment our counter by 1
-      // if counter is 0, return null (status is already 'Created'), if they are equal, return 'Ready', otherwise, return 'In-progress
       todos.forEach(todo => todo.done_status && trueTodos++);
-
+      // if counter is equal to total todos, then all are true and update trip status to ready, etc...
       if (trueTodos === totalTodos) {
         updateTrip({ id: tripData.id, status: 'Ready' });
       } else if (trueTodos === 0) {
@@ -64,7 +63,9 @@ const EditTripForm = ({ tripData }) => {
 
   return (
     <section style={{ background: theme.ui, color: theme.color }}>
-      <h5 className={setTripStatusStyle()}>{tripData.status}</h5>
+      <h5 className={`${setTripStatusStyle()} status-btn`}>
+        {tripData.status}
+      </h5>
       <form className="trip-form" onSubmit={handleSubmitTrip}>
         <div role="alert">
           {error && (
