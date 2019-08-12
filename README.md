@@ -4,17 +4,17 @@
 
 ### Screenshots
 
-#### FrontEnd Stack
+![Light Mode](https://imgur.com/t8muUtb.png) ![Dark Mode](https://imgur.com/Hx6S11U.png)
+
+#### Frontend Stack
 
 - React
 - Built with React Hooks & Context API
 - Vanilla CSS
-- FontAwesome Library
 
 #### Backend Stack
 
-- Node.js
-- Express
+- Node.js / Express
 - PostgreSQL
 
 Deployed to Zeit and Heroku
