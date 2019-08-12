@@ -5,7 +5,7 @@ import TodoForm from '../TodoForm/TodoForm';
 import Todo from '../Todo/Todo';
 import './TodoList.css';
 
-const TodoList = ({ trip_id }) => {
+const TodoList = ({ trip_id, checkTodosStatus }) => {
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const theme = isLightTheme ? light : dark;
   const [todos, setTodos] = useState([]);
@@ -32,7 +32,10 @@ const TodoList = ({ trip_id }) => {
       done_status
     };
     TodoApiService.updateTodo(data).then(() => {
-      TodoApiService.getTodos(trip_id).then(todos => setTodos(todos));
+      TodoApiService.getTodos(trip_id).then(todos => {
+        setTodos(todos);
+        checkTodosStatus();
+      });
     });
   };
 

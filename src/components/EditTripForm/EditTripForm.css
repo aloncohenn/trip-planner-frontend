@@ -15,21 +15,16 @@
   font-size: 12px;
 }
 
-#edit-header {
-  text-align: center;
-  font-size: 24px;
-}
-
 .status-btn {
-  font-size: 0.8rem;
   font-family: 'Rubik', sans-serif;
-  font-weight: bold;
   border: 0px;
   border-radius: 15px;
-  width: 80px;
-  margin: 15px auto;
-  padding: 8px 15px;
-  display: block;
+  text-align: center;
+  width: 100px;
+  margin: 0 auto;
+  margin-top: 8px;
+  padding: 5px;
+  color: #ffffff;
 }
 
 .ready {
@@ -41,7 +36,7 @@
 }
 
 .in-progress {
-  background-color: #f5e51b;
+  background-color: #ff9f43;
 }
 
 .select-css {

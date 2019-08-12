@@ -17,7 +17,6 @@ const Dashboard = () => {
   const getTripForm = id => {
     setTripID(id);
   };
-
   const getDuration = (startDate, endDate) => {
     // trim the dates for presentation
     startDate = startDate.split('T');

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { TripContext } from '../../contexts/TripContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import TodoApiService from '../../services/TodoApiService';
 import TodoList from '../TodoList/TodoList';
 import moment from 'moment';
 import Emoji from '../Emoji/Emoji';
@@ -28,25 +29,42 @@ const EditTripForm = ({ tripData }) => {
     );
   };
 
-  // TODO: set and show trip status
+  const checkTodosStatus = () => {
+    TodoApiService.getTodos(tripData.id).then(todos => {
+      // create a variable for total todos
+      const totalTodos = todos.length;
+      // create a counter for each todo
+      let trueTodos = 0;
+      // iterate through each todo status, when one is true, increment our counter by 1
+      // if counter is 0, return null (status is already 'Created'), if they are equal, return 'Ready', otherwise, return 'In-progress
+      todos.forEach(todo => todo.done_status && trueTodos++);
 
-  // const setTripStatus = status => {
-  //   console.log(status);
-  //   if (status === 'Created') {
-  //     return 'status-btn created';
-  //   }
-  //   if (status === 'InProgress') {
-  //     return 'status-btn in-progress';
-  //   }
+      if (trueTodos === totalTodos) {
+        updateTrip({ id: tripData.id, status: 'Ready' });
+      } else if (trueTodos === 0) {
+        updateTrip({ id: tripData.id, status: 'Created' });
+      } else {
+        updateTrip({ id: tripData.id, status: 'In-progress' });
+      }
+    });
+  };
 
-  //   if (status === 'Ready') {
-  //     return 'status-btn ready';
-  //   }
-  // };
+  const setTripStatusStyle = () => {
+    if (tripData.status === 'Created') {
+      return 'status-btn created';
+    }
+    if (tripData.status === 'In-progress') {
+      return 'status-btn in-progress';
+    }
+
+    if (tripData.status === 'Ready') {
+      return 'status-btn ready';
+    }
+  };
 
   return (
     <section style={{ background: theme.ui, color: theme.color }}>
-      <h3 id="edit-header">Edit Trip</h3>
+      <h5 className={setTripStatusStyle()}>{tripData.status}</h5>
       <form className="trip-form" onSubmit={handleSubmitTrip}>
         <div role="alert">
           {error && (
@@ -129,7 +147,11 @@ const EditTripForm = ({ tripData }) => {
         />
       </form>
       <div>
-        <TodoList trip_id={tripData.id} />
+        <TodoList
+          trip_id={tripData.id}
+          tripData={tripData}
+          checkTodosStatus={checkTodosStatus}
+        />
       </div>
     </section>
   );
