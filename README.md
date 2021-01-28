@@ -19,4 +19,4 @@
 
 Deployed to Zeit and Heroku
 
-Built by [@cohencodes](https://github.com/cohencodes)
+Built by [@aloncohenn](https://github.com/aloncohenn)
